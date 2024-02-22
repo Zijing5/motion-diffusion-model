@@ -127,3 +127,9 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+
+# specified bu wzj
+body_models/
+dataset/
+save/
