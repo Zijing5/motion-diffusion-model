@@ -133,3 +133,6 @@ dmypy.json
 body_models/
 dataset/
 save/
+kit/
+t2m/
+glove/
