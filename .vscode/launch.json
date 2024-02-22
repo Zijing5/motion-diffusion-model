@@ -1,0 +1,46 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "t2m train on humanml",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "train.train_mdm",
+      "args": [
+            "--save_dir",
+            "save/my_humanml_trans_enc_512_train",
+            "--dataset",
+            "humanml"
+      ]
+    },
+    {
+      "name": "text input and motion gen",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "sample.generate",
+      "args": [
+        "--model_path",
+        "./save/humanml_trans_enc_512/model000200000.pt",
+        "--text_prompt",
+        "'the person walked forward and is picking up his toolbox.'"
+      ]
+    },
+    {
+      "name": "official sample gen",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "sample.generate",
+      "args": [
+        "--model_path",
+        "./save/humanml_trans_enc_512/model000200000.pt",
+        "--num_samples",
+        "10",
+        "--num_repetitions",
+        "3"
+      ]
+    }
+  ]
+}
