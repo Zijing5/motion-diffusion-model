@@ -329,7 +329,7 @@ class GaussianDiffusion:
                 model_log_variance = frac * max_log + (1 - frac) * min_log
                 model_variance = th.exp(model_log_variance)
         else:
-            model_variance, model_log_variance = {
+            model_variance, model_log_variance = { #TODO: not understand
                 # for fixedlarge, we set the initial (log-)variance like so
                 # to get a better decoder log likelihood.
                 ModelVarType.FIXED_LARGE: (
@@ -653,7 +653,7 @@ class GaussianDiffusion:
             cond_fn_with_grad=cond_fn_with_grad,
             const_noise=const_noise,
         )):
-            if dump_steps is not None and i in dump_steps:
+            if dump_steps is not None and i in dump_steps: # save diffusion mid img
                 dump.append(deepcopy(sample["sample"]))
             final = sample
         if dump_steps is not None:
@@ -726,8 +726,8 @@ class GaussianDiffusion:
                     model_kwargs=model_kwargs,
                     const_noise=const_noise,
                 )
-                yield out
                 img = out["sample"]
+                yield out
 
     def ddim_sample(
         self,

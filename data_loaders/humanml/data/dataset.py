@@ -707,6 +707,7 @@ class TextOnlyDataset(data.Dataset):
         return len(self.data_dict)
 
     def __getitem__(self, item):
+        # idx-->random take form 3 captions
         idx = self.pointer + item
         data = self.data_dict[self.name_list[idx]]
         text_list = data['text']

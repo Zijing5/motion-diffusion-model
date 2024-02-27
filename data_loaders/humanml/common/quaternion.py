@@ -66,11 +66,11 @@ def qrot(q, v):
     # print(q.shape)
     q = q.contiguous().view(-1, 4)
     v = v.contiguous().view(-1, 3)
-
+    #TODO:not understand below
     qvec = q[:, 1:]
     uv = torch.cross(qvec, v, dim=1)
     uuv = torch.cross(qvec, uv, dim=1)
-    return (v + 2 * (q[:, :1] * uv + uuv)).view(original_shape)
+    return (v + 2 * (q[:, :1] * uv + uuv)).view(original_shape) 
 
 
 def qeuler(q, order, epsilon=0, deg=True):
