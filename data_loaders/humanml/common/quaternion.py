@@ -66,9 +66,15 @@ def qrot(q, v):
     # print(q.shape)
     q = q.contiguous().view(-1, 4)
     v = v.contiguous().view(-1, 3)
+<<<<<<< HEAD
     #TODO:it is a quaternoion rotation, which is along y
     qvec = q[:, 1:] # rotation angle along some axis(y) so it should be (xi+0j+zk)
     uv = torch.cross(qvec, v, dim=1) # cross(x) by each corresponding row
+=======
+    #TODO:not understand below
+    qvec = q[:, 1:]
+    uv = torch.cross(qvec, v, dim=1)
+>>>>>>> 862c255166935f1fc1232cad4dc1a042d95b38f4
     uuv = torch.cross(qvec, uv, dim=1)
     return (v + 2 * (q[:, :1] * uv + uuv)).view(original_shape) 
 

@@ -78,12 +78,16 @@
         "--model_path",
         "./save/round2_my_humanml_trans_enc_512_train/model000570000.pt",
         "--text_prompt",
+<<<<<<< HEAD
         // "A person is bouncing and hopping as they walk forward."
         // "A person bends down and moves forward slowly."
         // "A persion lowers themselves onto the chair, keeping the back straight and knees bent."
         // "A person extends arms upward, reaching towards the ceiling, arching slightly."
         "A persion grips and raises a heavy object, involving knee bending."
         // "A a person person striks striks a a ball ball with with the the foot foot."
+=======
+        "'the person lied down on the ground.'"
+>>>>>>> 862c255166935f1fc1232cad4dc1a042d95b38f4
       ],
       "justMyCode": false
     },
