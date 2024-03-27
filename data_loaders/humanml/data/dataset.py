@@ -334,7 +334,7 @@ class Text2MotionDatasetV2(data.Dataset):
         motion = motion[idx:idx+m_length]
 
         "Z Normalization"
-        motion = (motion - self.mean) / self.std
+        motion = (motion - self.mean) / self.std #TODO: not understand, why z normalization?
 
         if m_length < self.max_motion_length:
             motion = np.concatenate([motion,
@@ -707,6 +707,7 @@ class TextOnlyDataset(data.Dataset):
         return len(self.data_dict)
 
     def __getitem__(self, item):
+        # idx-->random take form 3 captions
         idx = self.pointer + item
         data = self.data_dict[self.name_list[idx]]
         text_list = data['text']

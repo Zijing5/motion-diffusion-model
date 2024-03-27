@@ -453,7 +453,7 @@ def configure(dir=None, format_strs=None, comm=None, log_suffix=""):
     assert isinstance(dir, str)
     dir = os.path.expanduser(dir)
     os.makedirs(os.path.expanduser(dir), exist_ok=True)
-
+    # for distributed training 
     rank = get_rank_without_mpi_import()
     if rank > 0:
         log_suffix = log_suffix + "-rank%03i" % rank

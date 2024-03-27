@@ -141,15 +141,16 @@ class MDM(nn.Module):
     def forward(self, x, timesteps, y=None):
         """
         x: [batch_size, njoints, nfeats, max_frames], denoted x_t in the paper
-        timesteps: [batch_size] (int)
+        timesteps: [batch_size] (int)??
         """
+        #TODO:not undestand timestep
         bs, njoints, nfeats, nframes = x.shape
         emb = self.embed_timestep(timesteps)  # [1, bs, d]
 
         force_mask = y.get('uncond', False)
         if 'text' in self.cond_mode:
             enc_text = self.encode_text(y['text'])
-            emb += self.embed_text(self.mask_cond(enc_text, force_mask=force_mask))
+            emb += self.embed_text(self.mask_cond(enc_text, force_mask=force_mask)) # text encode
         if 'action' in self.cond_mode:
             action_emb = self.embed_action(y['action'])
             emb += self.mask_cond(action_emb, force_mask=force_mask)

@@ -68,7 +68,7 @@ def main():
 
     print('Loading dataset...')
     data = load_dataset(args, max_frames, n_frames)
-    total_num_samples = args.num_samples * args.num_repetitions
+    total_num_samples = args.num_samples * args.num_repetitions # text num * gen for each text
 
     print("Creating model and diffusion...")
     model, diffusion = create_model_and_diffusion(args, data)

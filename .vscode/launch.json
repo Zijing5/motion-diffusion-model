@@ -3,17 +3,70 @@
   // Hover to view descriptions of existing attributes.
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
-  "configurations": [
+  "configurations": [    
+    {
+    "name": "wzjdiftrain_t2m train on humanml",
+    "type": "debugpy",
+    "request": "launch",
+    "module": "train.train_mydiffusion",
+    "args": [
+      "--save_dir",
+      "save/wzjdiffusion_train",
+      "--dataset",
+      "humanml",
+      "--batch_size",
+      "3"
+    ]
+  },
+    {
+      "name": "Render",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "visualize.render_mesh",
+      "args": ["--input_path",
+               "D:\\wzj_bishe\\mdm\\motion-diffusion-model\\save\\round2_my_humanml_trans_enc_512_train\\strikeball\\sample00_rep00.mp4"],
+    },
+    {
+      "name": "evaluate",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "eval.eval_humanml",
+      "args": [
+        "--model_path",
+        "./save/round2_my_humanml_trans_enc_512_train/model000570000.pt"
+      ],
+      "justMyCode": false
+    },
+    {
+      "name": "mytrain_t2m train on humanml",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "train.train_mymodel",
+      "args": [
+        "--save_dir",
+        "save/wzj_humanml_trans_enc_512_train",
+        "--dataset",
+        "humanml",
+        "--batch_size",
+        "3"
+      ]
+    },
     {
       "name": "t2m train on humanml",
       "type": "debugpy",
       "request": "launch",
       "module": "train.train_mdm",
       "args": [
-            "--save_dir",
-            "save/my_humanml_trans_enc_512_train",
-            "--dataset",
-            "humanml"
+        "--save_dir",
+        "save/round4_my_humanml_trans_enc_512_train",
+        "--dataset",
+        "humanml",
+        "--batch_size",
+        "64",
+        "--save_interval",
+        "40000",
+        "--resume_checkpoint",
+        "./save/round3_my_humanml_trans_enc_512_train/model000570000.pt"
       ]
     },
     {
@@ -23,10 +76,16 @@
       "module": "sample.generate",
       "args": [
         "--model_path",
-        "./save/humanml_trans_enc_512/model000200000.pt",
+        "./save/round2_my_humanml_trans_enc_512_train/model000570000.pt",
         "--text_prompt",
-        "'the person walked forward and is picking up his toolbox.'"
-      ]
+        // "A person is bouncing and hopping as they walk forward."
+        // "A person bends down and moves forward slowly."
+        // "A persion lowers themselves onto the chair, keeping the back straight and knees bent."
+        // "A person extends arms upward, reaching towards the ceiling, arching slightly."
+        "A persion grips and raises a heavy object, involving knee bending."
+        // "A a person person striks striks a a ball ball with with the the foot foot."
+      ],
+      "justMyCode": false
     },
     {
       "name": "official sample gen",

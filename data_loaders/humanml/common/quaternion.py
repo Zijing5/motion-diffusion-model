@@ -66,11 +66,11 @@ def qrot(q, v):
     # print(q.shape)
     q = q.contiguous().view(-1, 4)
     v = v.contiguous().view(-1, 3)
-
-    qvec = q[:, 1:]
-    uv = torch.cross(qvec, v, dim=1)
+    #TODO:it is a quaternoion rotation, which is along y
+    qvec = q[:, 1:] # rotation angle along some axis(y) so it should be (xi+0j+zk)
+    uv = torch.cross(qvec, v, dim=1) # cross(x) by each corresponding row
     uuv = torch.cross(qvec, uv, dim=1)
-    return (v + 2 * (q[:, :1] * uv + uuv)).view(original_shape)
+    return (v + 2 * (q[:, :1] * uv + uuv)).view(original_shape) 
 
 
 def qeuler(q, order, epsilon=0, deg=True):
